@@ -10,7 +10,7 @@ import org.tribot.api2007.ext.Filters;
 import org.tribot.api2007.types.RSCharacter;
 import org.tribot.api2007.types.RSItem;
 import org.tribot.api2007.types.RSNPC;
-import scripts.JkgAPI.Game.Antiban;
+import scripts.JkgAPI.Core.JKGAntiban;
 import scripts.JkgAPI.Game.Movement;
 
 
@@ -25,14 +25,14 @@ public abstract class Combat extends org.tribot.api2007.Combat {
 
         if (food != null && food.length > 0) {
 
-            if (getHPRatio() <= Antiban.getEatPercentage() || Inventory.isFull()) {
+            if (getHPRatio() <= JKGAntiban.getEatPercentage() || Inventory.isFull()) {
 
                 GameTab.open(TABS.INVENTORY);
 
                 if (Clicking.click(food[0]))
                     General.sleep(200, 300);
 
-                Antiban.resetEatPercentage();
+                JKGAntiban.resetEatPercentage();
             }
         }
     }
@@ -74,7 +74,7 @@ public abstract class Combat extends org.tribot.api2007.Combat {
                 continue;
             }
 
-            if (!hoverAndAttackNextTarget || !Antiban.mayHoverNextObject())
+            if (!hoverAndAttackNextTarget || !JKGAntiban.mayHoverNextObject())
                 break;
 
             if (npcs.length > i + 1) {
@@ -101,7 +101,7 @@ public abstract class Combat extends org.tribot.api2007.Combat {
                     attackingCharacters = getAttackingEntities();
                 }
 
-                Antiban.doDelayForSwitchObject(true);
+                JKGAntiban.doDelayForSwitchObject(true);
 
                 // Here we killed our current npc, lets check if our hover target is still alive and out of combat
                 if (!hoverNPC.isOnScreen())

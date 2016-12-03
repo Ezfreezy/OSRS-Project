@@ -7,7 +7,7 @@ import org.tribot.api2007.Interfaces;
 import org.tribot.api2007.types.RSInterface;
 import org.tribot.api2007.types.RSInterfaceChild;
 import org.tribot.api2007.types.RSItem;
-import scripts.JkgAPI.Game.Condition;
+import scripts.JkgAPI.Core.Conditions;
 import scripts.JkgAPI.Game.Inventory;
 
 public class BankingHelper { // Sadly, tribot's Banking class is declared final and cannot be extended.
@@ -16,7 +16,7 @@ public class BankingHelper { // Sadly, tribot's Banking class is declared final 
     private static final int SELECTED_TEXTURE = 813;
     private static final int AMOUNT_INTERFACE = 5;
 
-    private static Condition bankCondition = new Condition() {
+    private static Conditions bankCondition = new Conditions() {
         @Override
         public boolean active() {
             General.sleep(50, 100);
@@ -83,7 +83,7 @@ public class BankingHelper { // Sadly, tribot's Banking class is declared final 
 
             if (Banking.withdrawItem(item, count)) {
 
-                return Timing.waitCondition(new Condition() {
+                return Timing.waitCondition(new Conditions() {
                     @Override
                     public boolean active() {
                         General.sleep(50, 100);
@@ -112,7 +112,7 @@ public class BankingHelper { // Sadly, tribot's Banking class is declared final 
 
         if (itemWidget != null) {
             if (itemWidget.click(widg.name)) {
-                return (Timing.waitCondition(new Condition() {
+                return (Timing.waitCondition(new Conditions() {
                     @Override
                     public boolean active() {
                         General.sleep(50);

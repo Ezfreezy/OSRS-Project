@@ -17,23 +17,10 @@ public class TravelToAltar implements Task {
 
 	@Override
 	public boolean validate() {
-		AbstractAltar altar = Variables.getInstance().get("altar");
-
-		int essenceCount;
-		if (altar.requirePureEssence())
-			essenceCount = Inventory.getCount("Pure essence");
-		else
-			essenceCount = Inventory.getCount(Filters.Items.nameContains("essence"));
-
-		return essenceCount > 0;
+		return false;
 	}
 
 	@Override
 	public void execute() {
-		AbstractAltar altar = Variables.getInstance().get("altar");
-
-		Antiban.doIdleActions();
-
-		Movement.walkTo(altar.getAltarLocation());
 	}
 }

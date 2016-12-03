@@ -10,7 +10,7 @@ import org.tribot.api2007.types.RSArea;
 import org.tribot.api2007.types.RSObject;
 import org.tribot.api2007.types.RSTile;
 import org.tribot.api2007.util.DPathNavigator;
-import scripts.JkgAPI.Game.Antiban;
+import scripts.JkgAPI.Core.JKGAntiban;
 
 import java.util.ArrayList;
 
@@ -162,7 +162,7 @@ public class Movement {
 
 		if (posToWalk instanceof RSTile)
 
-			Antiban.doActivateRun();
+			JKGAntiban.doActivateRun();
 
 		int failsafe = 0;
 		while (!Player.getPosition().equals(posToWalk) && failsafe < 20) {
@@ -197,7 +197,7 @@ public class Movement {
 
 			final RSTile tile = path[i];
 
-			Antiban.doActivateRun();
+			JKGAntiban.doActivateRun();
 
 			if (canReach(tile)) {
 				Walking.blindWalkTo(tile);

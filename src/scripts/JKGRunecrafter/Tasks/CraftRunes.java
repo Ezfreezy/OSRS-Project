@@ -21,45 +21,10 @@ public class CraftRunes implements Task {
 
 	@Override
 	public boolean validate() {
-		AbstractAltar altar = Variables.getInstance().get("altar");
-
-		int essenceCount;
-		if (altar.requirePureEssence())
-			essenceCount = Inventory.getCount("Pure essence");
-		else
-			essenceCount = Inventory.getCount(Filters.Items.nameContains("essence"));
-
-		return altar.getAltarArea().contains(Player.getPosition()) && essenceCount > 0;
+		return false;
 	}
 
 	@Override
 	public void execute() {
-		AbstractAltar altar = Variables.getInstance().get("altar");
-
-		final int preEssence = Inventory.getCount(altar.getRuneName() + " rune");
-
-		if (ObjectsHelper.interact("Craft-rune")) {
-
-			Timing.waitCondition(new Condition() {
-				public boolean active() {
-					General.sleep(50);
-					return Inventory.find("essence").length != 0 && Player.getAnimation() == -1;
-				}
-			}, General.random(5000, 6000));
-		}
-
-		int newEssence = Math.abs(Inventory.getCount(altar.getRuneName() + " rune") - preEssence);
-
-		if (newEssence > 0) {
-
-			int trips = Variables.getInstance().get("trips", 0);
-			Variables.getInstance().addOrUpdate("trips", ++trips);
-
-			int runesCrafted = Variables.getInstance().get("runesCrafted", 0);
-			runesCrafted += newEssence;
-			Variables.getInstance().addOrUpdate("runesCrafted", runesCrafted);
-
-			Antiban.doIdleActions();
-		}
 	}
 }

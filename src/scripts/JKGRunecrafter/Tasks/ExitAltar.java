@@ -18,17 +18,10 @@ public class ExitAltar implements Task {
 
 	@Override
 	public boolean validate() {
-		AbstractAltar altar = Variables.getInstance().get("altar");
-
-		return altar.getAltarArea().contains(Player.getPosition());
+		return false;
 	}
 
 	@Override
 	public void execute() {
-		AbstractAltar altar = Variables.getInstance().get("altar");
-
-		ObjectsHelper.interact("Use");
-
-		Timing.waitCondition(Conditions.UntilNotInAltar(altar), General.random(4000, 5000));
 	}
 }
