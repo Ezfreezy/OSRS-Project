@@ -13,7 +13,7 @@ public class Conditions {
         return new Condition() {
             public boolean active() {
                 General.sleep(50);
-                return Equipment.isEquipped(altar.getTiaraID());
+                return Equipment.isEquipped(altar.getTiaraName());
             }
         };
     }
@@ -22,7 +22,7 @@ public class Conditions {
         return new Condition() {
             public boolean active() {
                 General.sleep(50);
-                return Inventory.hasItem(altar.getTiaraID());
+                return Inventory.hasItem(altar.getTiaraName());
             }
         };
     }
@@ -31,7 +31,7 @@ public class Conditions {
         return new Condition() {
             public boolean active() {
                 General.sleep(50);
-                return Inventory.hasItem(altar.getTalismanID());
+                return Inventory.hasItem(altar.getTalismanName());
             }
         };
     }

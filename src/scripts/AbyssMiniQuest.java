@@ -12,17 +12,36 @@ import org.tribot.api2007.PathFinding;
 import org.tribot.api2007.WebWalking;
 import org.tribot.api2007.ext.Doors;
 import org.tribot.api2007.ext.Filters;
+import org.tribot.api2007.types.RSArea;
 import org.tribot.api2007.types.RSItem;
 import org.tribot.api2007.types.RSObject;
+import org.tribot.api2007.types.RSTile;
 import org.tribot.script.Script;
 import org.tribot.script.ScriptManifest;
 
-import scripts.JkgAPI.Core.Conditions;
+import scripts.JkgAPI.Core.JKGConditions;
 import scripts.JkgAPI.Core.TalkNpc;
 
 @ScriptManifest(authors = { "Jkg58" }, category = "Quests", name = "Abyss Mini Quest")
 public class AbyssMiniQuest extends Script {
 
+	RSArea Area1 = new RSArea(new RSTile(3111, 3167, 0), new RSTile(3108, 3169, 0));
+	RSArea Area22 = new RSArea(new RSTile(3111, 3163, 0), new RSTile(3107, 3165, 0));
+	RSArea Area2 = new RSArea(new RSTile(3251, 3398, 0), new RSTile(3255, 3396, 0));
+	RSArea Area33 = new RSArea(new RSTile(3106, 9570, 0), new RSTile(3102, 9573, 0));
+	RSArea Area333 = new RSArea(new RSTile(3105, 3161, 0), new RSTile(3103, 3164, 0));
+	RSArea Area3 = new RSArea(new RSTile(3221, 3215, 0), new RSTile(3226, 3221, 0));
+
+	RSTile door1 = new RSTile(3109, 3167, 0);
+	RSTile door2 = new RSTile(3107, 3162, 0);
+	RSTile door3 = new RSTile(3253, 3398, 0);
+
+	RSTile towertile = new RSTile(3109, 3164, 0);
+	RSTile towertile2 = new RSTile(3106, 3161, 0);
+	RSTile towertile3 = new RSTile(3104, 9576, 0);
+	RSTile rcShop = new RSTile(3253, 3401, 0);
+	RSTile church = new RSTile(3253, 3401, 0);
+	
 	@Override
 	public void run() {
 		//startQuest();
@@ -54,12 +73,12 @@ public class AbyssMiniQuest extends Script {
 		Clicking.click(v_tele);
 
 		if (WebWalking.walkTo(Area1.getRandomTile()))
-			Timing.waitCondition(Conditions.areaContains(Area1), General.random(6000, 9000));
+			Timing.waitCondition(JKGConditions.areaContains(Area1), General.random(6000, 9000));
 
 		if (Doors.isDoorAt(door1, false)) {
 			do {
 				if (Doors.handleDoorAt(door1, true))
-					Timing.waitCondition(Conditions.areaContains(Area2), General.random(2000, 3000));
+					Timing.waitCondition(JKGConditions.areaContains(Area2), General.random(2000, 3000));
 			} while (!PathFinding.canReach(church, false));
 		}
 	}
@@ -81,12 +100,12 @@ public class AbyssMiniQuest extends Script {
 	public void walkToAubury() { // rightclick & teleport
 
 		if (WebWalking.walkTo(Area2.getRandomTile()))
-			Timing.waitCondition(Conditions.areaContains(Area2), General.random(6000, 9000));
+			Timing.waitCondition(JKGConditions.areaContains(Area2), General.random(6000, 9000));
 
 		if (Doors.isDoorAt(door2, false)) {
 			do {
 				if (Doors.handleDoorAt(door2, true))
-					Timing.waitCondition(Conditions.areaContains(Area3), General.random(2000, 3000));
+					Timing.waitCondition(JKGConditions.areaContains(Area3), General.random(2000, 3000));
 			} while (!PathFinding.canReach(rcShop, false));
 		}
 	}
@@ -98,11 +117,11 @@ public class AbyssMiniQuest extends Script {
 									// wizard
 
 		if (WebWalking.walkTo(Area1.getRandomTile()))
-			Timing.waitCondition(Conditions.areaContains(Area1), General.random(6000, 9000));
+			Timing.waitCondition(JKGConditions.areaContains(Area1), General.random(6000, 9000));
 
 		if (Doors.isDoorAt(door1, false)) {
 			Doors.handleDoorAt(door1, true);
-			Timing.waitCondition(Conditions.canReach(towertile), General.random(3000, 4000));
+			Timing.waitCondition(JKGConditions.canReach(towertile), General.random(3000, 4000));
 		}
 
 		RSObject[] doors = Objects.findNearest(10,
@@ -111,26 +130,26 @@ public class AbyssMiniQuest extends Script {
 			if (a.getPosition().equals(door2)) {
 				do {
 					if (DynamicClicking.clickRSObject(a, "Open")) {
-						Timing.waitCondition(Conditions.canReach(towertile2), General.random(5000, 6000));
+						Timing.waitCondition(JKGConditions.canReach(towertile2), General.random(5000, 6000));
 					}
 				} while (PathFinding.canReach(towertile2, false));
 			}
 		}
 
 		if (WebWalking.walkTo(Area333.getRandomTile()))
-			Timing.waitCondition(Conditions.areaContains(Area333), General.random(6000, 9000));
+			Timing.waitCondition(JKGConditions.areaContains(Area333), General.random(6000, 9000));
 
 		RSObject[] ladder = Objects.findNearest(5, Filters.Objects.nameEquals("Ladder"));
 
 		if (DynamicClicking.clickRSObject(ladder[0], "Climb-down")) {
-			Timing.waitCondition(Conditions.canReach(towertile3), General.random(5000, 6000));
+			Timing.waitCondition(JKGConditions.canReach(towertile3), General.random(5000, 6000));
 		}
 		while (PathFinding.canReach(towertile3, false))
 			;
 		General.sleep(2000, 3000);
 
 		if (WebWalking.walkTo(Area33.getRandomTile()))
-			Timing.waitCondition(Conditions.areaContains(Area33), General.random(6000, 9000));
+			Timing.waitCondition(JKGConditions.areaContains(Area33), General.random(6000, 9000));
 
 	} // rightclick and teleport
 
@@ -147,12 +166,12 @@ public class AbyssMiniQuest extends Script {
 		Clicking.click(v_tele);
 
 		if (WebWalking.walkTo(Area1.getRandomTile()))
-			Timing.waitCondition(Conditions.areaContains(Area1), General.random(6000, 9000));
+			Timing.waitCondition(JKGConditions.areaContains(Area1), General.random(6000, 9000));
 
 		if (Doors.isDoorAt(door1, false)) {
 			do {
 				if (Doors.handleDoorAt(door1, true))
-					Timing.waitCondition(Conditions.areaContains(Area2), General.random(2000, 3000));
+					Timing.waitCondition(JKGConditions.areaContains(Area2), General.random(2000, 3000));
 			} while (!PathFinding.canReach(church, false));
 		}
 	}

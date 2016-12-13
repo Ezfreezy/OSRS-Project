@@ -24,10 +24,9 @@ public class Eating implements Task {
 
 	@Override
 	public void execute() {
-		
 		if (getHPPercent() <= this.eat_at) {
 			eatFood();
-			this.eat_at = ((ABCUtil) this.abc_util).generateEatAtHP();
+			this.eat_at = this.abc_util.generateEatAtHP();
 	}
 }
 

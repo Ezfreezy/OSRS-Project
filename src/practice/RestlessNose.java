@@ -22,9 +22,9 @@ import org.tribot.api2007.types.RSTile;
 import org.tribot.script.Script;
 import org.tribot.script.ScriptManifest;
 
-import customapi.Condi;
-import customapi.ItemUsing;
-import customapi.TalkNpc;
+import scripts.JkgAPI.Core.ItemUsing;
+import scripts.JkgAPI.Core.JKGConditions;
+import scripts.JkgAPI.Core.TalkNpc;
 
 @ScriptManifest(authors = {"Jkg58" }, category = "Quests", name = "Restless Ghost", description = "Start in Lumbridge Church")
 public class RestlessNose extends Script {
@@ -73,7 +73,7 @@ public class RestlessNose extends Script {
 		RSNPC npc1 = NPCs.findNearest("Father Aereck")[0];
 		do {
 			if (DynamicClicking.clickRSNPC(npc1, "Talk-to")) {
-				Timing.waitCondition(Condi.dialogCond(), General.random(5000, 6000));
+				Timing.waitCondition(JKGConditions.dialogCond(), General.random(5000, 6000));
 			}
 		} while (NPCChat.getClickContinueInterface() == null);
 
@@ -89,11 +89,11 @@ public class RestlessNose extends Script {
 	public void walkToShack() {
 
 		if (WebWalking.walkTo(Area1.getRandomTile()))
-			Timing.waitCondition(Condi.areaContains(Area1), General.random(6000, 9000));
+			Timing.waitCondition(JKGConditions.areaContains(Area1), General.random(6000, 9000));
 
 		if (Doors.isDoorAt(door1, false)) {
 			Doors.handleDoorAt(door1, true);
-			Timing.waitCondition(Condi.canReach(shacktile), General.random(2000, 3000));
+			Timing.waitCondition(JKGConditions.canReach(shacktile), General.random(2000, 3000));
 		}
 	}
 
@@ -102,7 +102,7 @@ public class RestlessNose extends Script {
 		RSNPC npc2 = NPCs.findNearest("Father Urhney")[0];
 		do {
 			if (DynamicClicking.clickRSNPC(npc2, "Talk-to")) {
-				Timing.waitCondition(Condi.dialogCond(), General.random(5000, 6000));
+				Timing.waitCondition(JKGConditions.dialogCond(), General.random(5000, 6000));
 			}
 		} while (NPCChat.getClickContinueInterface() == null);
 
@@ -124,12 +124,12 @@ public class RestlessNose extends Script {
 			Clicking.click(gs_amulet);
 
 		if (WebWalking.walkTo(Area2.getRandomTile()))
-			Timing.waitCondition(Condi.areaContains(Area2), General.random(15000, 18000));
+			Timing.waitCondition(JKGConditions.areaContains(Area2), General.random(15000, 18000));
 
 		if (Doors.isDoorAt(door2, false)) {
 			do {
 				if (Doors.handleDoorAt(door2, true))
-					Timing.waitCondition(Condi.canReach(crypttile), General.random(2000, 3000));
+					Timing.waitCondition(JKGConditions.canReach(crypttile), General.random(2000, 3000));
 			} while (!PathFinding.canReach(crypttile, false));
 		}
 		RSObject[] coffin = Objects.findNearest(5, Filters.Objects.nameEquals("Coffin"));
@@ -146,7 +146,7 @@ public class RestlessNose extends Script {
 		RSNPC npc3 = NPCs.findNearest("Restless ghost")[0];
 		do {
 			if (DynamicClicking.clickRSNPC(npc3, "Talk-to")) {
-				Timing.waitCondition(Condi.dialogCond(), General.random(5000, 6000));
+				Timing.waitCondition(JKGConditions.dialogCond(), General.random(5000, 6000));
 			}
 		} while (NPCChat.getClickContinueInterface() == null);
 	
@@ -161,11 +161,11 @@ public class RestlessNose extends Script {
 	public void walkToTower() {
 
 		if (WebWalking.walkTo(Area3.getRandomTile()))
-			Timing.waitCondition(Condi.areaContains(Area3), General.random(6000, 9000));
+			Timing.waitCondition(JKGConditions.areaContains(Area3), General.random(6000, 9000));
 
 		if (Doors.isDoorAt(door3, false)) {
 			Doors.handleDoorAt(door3, true);
-			Timing.waitCondition(Condi.canReach(towertile), General.random(5000, 6000));
+			Timing.waitCondition(JKGConditions.canReach(towertile), General.random(5000, 6000));
 		}
 
 		RSObject[] doors = Objects.findNearest(10,Filters.Objects.nameContains("Door").combine(Filters.Objects.actionsContains("Open"), true));
@@ -174,7 +174,7 @@ public class RestlessNose extends Script {
 			if (a.getPosition().equals(door4)) {
 				do {
 					if (DynamicClicking.clickRSObject(a, "Open")) {
-						Timing.waitCondition(Condi.canReach(towertile2), General.random(5000, 9000));
+						Timing.waitCondition(JKGConditions.canReach(towertile2), General.random(5000, 9000));
 					}
 				} while (PathFinding.canReach(towertile2, false));
 			}
@@ -185,15 +185,15 @@ public class RestlessNose extends Script {
 	public void finishQuest() {
 		
 		if (Magic.selectSpell("Lumbridge Home Teleport"));
-		Timing.waitCondition(Condi.areaContains(Area6), General.random(13000, 15000));
+		Timing.waitCondition(JKGConditions.areaContains(Area6), General.random(13000, 15000));
 		
 		if (WebWalking.walkTo(Area2.getRandomTile()))
-			Timing.waitCondition(Condi.areaContains(Area2), General.random(15000, 18000));
+			Timing.waitCondition(JKGConditions.areaContains(Area2), General.random(15000, 18000));
 
 		if (Doors.isDoorAt(door2, false)) {
 			do {
 				if (Doors.handleDoorAt(door2, true))
-					Timing.waitCondition(Condi.canReach(crypttile), General.random(2000, 3000));
+					Timing.waitCondition(JKGConditions.canReach(crypttile), General.random(2000, 3000));
 			} while (!PathFinding.canReach(crypttile, false));
 		}
 		RSObject[] coffin = Objects.findNearest(10, Filters.Objects.nameContains("Coffin"));

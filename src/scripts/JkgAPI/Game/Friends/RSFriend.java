@@ -5,7 +5,7 @@ import org.tribot.api.Timing;
 import org.tribot.api2007.GameTab;
 import org.tribot.api2007.WorldHopper;
 import org.tribot.api2007.types.RSInterfaceComponent;
-import scripts.JkgAPI.Game.Condition;
+import scripts.JkgAPI.Core.JKGConditions;
 
 final public class RSFriend {
 
@@ -30,7 +30,7 @@ final public class RSFriend {
 	public boolean delete() {
 		final int count = Friends.getAmount();
 		return GameTab.open(GameTab.TABS.FRIENDS) && nameComponent.click("Delete")
-				&& Timing.waitCondition(new Condition() {
+				&& Timing.waitCondition(new JKGConditions() {
 					@Override
 					public boolean active() {
 						General.sleep(50, 100);

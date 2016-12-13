@@ -21,7 +21,7 @@ import org.tribot.api2007.types.RSTile;
 import org.tribot.script.Script;
 import org.tribot.script.ScriptManifest;
 
-import scripts.JkgAPI.Core.Conditions;
+import scripts.JkgAPI.Core.JKGConditions;
 import scripts.JkgAPI.Core.TalkNpc;
 import scripts.JkgAPI.Core.Door;
 
@@ -90,13 +90,13 @@ public class WaterfallQuest extends Script {
 	public void raftToWaterfall() {
 
 		if (Walking.walkTo(Area1.getRandomTile()))
-			Timing.waitCondition(Conditions.areaContains(Area1), General.random(6000, 9000));
+			Timing.waitCondition(JKGConditions.areaContains(Area1), General.random(6000, 9000));
 
 		Door.openDoor(gate, rafttile);
 
 		RSObject[] raft = Objects.findNearest(10, Filters.Objects.nameContains("Log raft"));
 		if (DynamicClicking.clickRSObject(raft[0], "Board")) {
-			Timing.waitCondition(Conditions.canReach(waterfalltile), General.random(5000, 6000));
+			Timing.waitCondition(JKGConditions.canReach(waterfalltile), General.random(5000, 6000));
 		}
 		
 		General.sleep(3000, 4000);
@@ -128,7 +128,7 @@ public class WaterfallQuest extends Script {
 			if (Clicking.click(rope))
 
 				if (DynamicClicking.clickRSObject(rock[0], 1))
-					Timing.waitCondition(Conditions.playerPosition(waterfalltile3), General.random(30000, 50000));
+					Timing.waitCondition(JKGConditions.playerPosition(waterfalltile3), General.random(30000, 50000));
 
 		RSObject[] deadtree = Objects.findNearest(5, Filters.Objects.nameEquals("Dead tree"));
 
@@ -145,14 +145,14 @@ public class WaterfallQuest extends Script {
 	public void walkToHouse() {
 
 		if (WebWalking.walkTo(Area2.getRandomTile()))
-			Timing.waitCondition(Conditions.areaContains(Area2), General.random(6000, 9000));
+			Timing.waitCondition(JKGConditions.areaContains(Area2), General.random(6000, 9000));
 
 		Door.openDoor(door, housetile);
 		Camera.setCameraRotation(90);
 		Camera.setCameraAngle(61);
 
 		if (WebWalking.walkTo(Area3.getRandomTile()))
-			Timing.waitCondition(Conditions.areaContains(Area3), General.random(4000, 6000));
+			Timing.waitCondition(JKGConditions.areaContains(Area3), General.random(4000, 6000));
 	}
 
 	public void talkToHadley() {
@@ -186,7 +186,7 @@ public class WaterfallQuest extends Script {
 
 		Camera.turnToTile(stairs);
 		if (DynamicClicking.clickRSObject(staircase[0], "Climb-up")) {
-			Timing.waitCondition(Conditions.canReach(housetile2), General.random(5000, 6000));
+			Timing.waitCondition(JKGConditions.canReach(housetile2), General.random(5000, 6000));
 
 		}
 		while (PathFinding.canReach(housetile2, false))
@@ -240,15 +240,15 @@ public class WaterfallQuest extends Script {
 		// tele to castle wars
 
 		if (WebWalking.walkTo(Area4.getRandomTile()))
-			Timing.waitCondition(Conditions.areaContains(Area4), General.random(6000, 9000));
+			Timing.waitCondition(JKGConditions.areaContains(Area4), General.random(6000, 9000));
 
 		if (WebWalking.walkTo(Area5.getRandomTile()))
-			Timing.waitCondition(Conditions.areaContains(Area5), General.random(6000, 9000));
+			Timing.waitCondition(JKGConditions.areaContains(Area5), General.random(6000, 9000));
 
 		RSObject[] ladder = Objects.findNearest(10, Filters.Objects.nameEquals("Ladder"));
 
 		if (DynamicClicking.clickRSObject(ladder[0], "Climb-down"))
-			Timing.waitCondition(Conditions.canReach(cavetile), General.random(5000, 6000));
+			Timing.waitCondition(JKGConditions.canReach(cavetile), General.random(5000, 6000));
 
 	}
 
@@ -275,9 +275,9 @@ public class WaterfallQuest extends Script {
 		NPCChat.clickContinue(false);
 		General.sleep(500, 1000);
 		TalkNpc.continueLoop();
-		Timing.waitCondition(Conditions.dialogCond(), General.random(7000, 8000));
+		Timing.waitCondition(JKGConditions.dialogCond(), General.random(7000, 8000));
 		TalkNpc.continueLoop();
-		Timing.waitCondition(Conditions.dialogCond(), General.random(4000, 5000));
+		Timing.waitCondition(JKGConditions.dialogCond(), General.random(4000, 5000));
 		TalkNpc.continueLoop();
 	}
 
@@ -286,7 +286,7 @@ public class WaterfallQuest extends Script {
 		//teleport to barb outpost
 
 		if (WebWalking.walkTo(Area6.getRandomTile()))
-			Timing.waitCondition(Conditions.areaContains(Area6), General.random(6000, 9000));
+			Timing.waitCondition(JKGConditions.areaContains(Area6), General.random(6000, 9000));
 
 		RSObject[] tomb = Objects.findNearest(10, Filters.Objects.nameEquals("Glarial's tombstone"));
 		RSItem[] pebble = Inventory.find(Filters.Items.nameEquals("Glarial's pebble"));
@@ -309,16 +309,16 @@ public class WaterfallQuest extends Script {
 	public void backToWaterfall() {
 
 		if (WebWalking.walkTo(Area7.getRandomTile()))
-			Timing.waitCondition(Conditions.areaContains(Area7), General.random(6000, 9000));
+			Timing.waitCondition(JKGConditions.areaContains(Area7), General.random(6000, 9000));
 
 		if (Walking.walkTo(Area1.getRandomTile()))
-			Timing.waitCondition(Conditions.areaContains(Area1), General.random(6000, 9000));
+			Timing.waitCondition(JKGConditions.areaContains(Area1), General.random(6000, 9000));
 
 		Door.openDoor(gate, rafttile);
 
 		RSObject[] raft = Objects.findNearest(10, Filters.Objects.nameContains("Log raft"));
 		if (DynamicClicking.clickRSObject(raft[0], "Board")) {
-			Timing.waitCondition(Conditions.canReach(waterfalltile), General.random(5000, 6000));
+			Timing.waitCondition(JKGConditions.canReach(waterfalltile), General.random(5000, 6000));
 		}
 		General.sleep(3000, 4000);
 
@@ -340,7 +340,7 @@ public class WaterfallQuest extends Script {
 			if (Clicking.click(rope))
 
 				if (DynamicClicking.clickRSObject(rock[0], 1))
-					Timing.waitCondition(Conditions.playerPosition(waterfalltile3), General.random(30000, 50000));
+					Timing.waitCondition(JKGConditions.playerPosition(waterfalltile3), General.random(30000, 50000));
 
 		RSObject[] deadtree = Objects.findNearest(5, Filters.Objects.nameEquals("Dead tree"));
 

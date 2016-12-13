@@ -1,8 +1,6 @@
 package scripts.JKGRunecrafter.Altars;
 
-import org.tribot.api.types.generic.Filter;
 import org.tribot.api2007.types.RSArea;
-import org.tribot.api2007.types.RSItem;
 import org.tribot.api2007.types.RSTile;
 
 public abstract class AbstractAltar {
@@ -17,9 +15,9 @@ public abstract class AbstractAltar {
 
 	public abstract String getRuneName();
 
-	public abstract Filter<RSItem> getTiaraID();
+	public abstract String getTiaraName();
 
-	public abstract int getTalismanID();
+	public abstract String getTalismanName();
 
 	public abstract boolean requirePureEssence();
 

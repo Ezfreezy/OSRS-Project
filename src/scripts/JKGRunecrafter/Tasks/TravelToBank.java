@@ -4,10 +4,10 @@ import org.tribot.api2007.ext.Filters;
 
 import scripts.JKGRunecrafter.Altars.AbstractAltar;
 import scripts.JkgAPI.Framework.Task;
-import scripts.JkgAPI.Game.Antiban;
+import scripts.JkgAPI.Core.JKGAntiban;
 import scripts.JkgAPI.Game.Inventory;
 import scripts.JkgAPI.Game.Movement;
-import scripts.JkgAPI.Game.Variables;
+import scripts.JkgAPI.Core.Variables;
 
 public class TravelToBank implements Task {
 	@Override
@@ -17,10 +17,23 @@ public class TravelToBank implements Task {
 
 	@Override
 	public boolean validate() {
-		return false;
-	}
+		 AbstractAltar altar = Variables.getInstance().get("altar");
+
+	        int essenceCount;
+	        if (altar.requirePureEssence())
+	            essenceCount = Inventory.getCount("Pure essence");
+	        else
+	            essenceCount = Inventory.getCount(Filters.Items.nameContains("essence"));
+
+	        return essenceCount < 1;
+	    }
 
 	@Override
 	public void execute() {
-	}
+		AbstractAltar altar = Variables.getInstance().get("altar");
+
+        JKGAntiban.doIdleActions();
+
+        Movement.walkTo(altar.getBankArea().getRandomTile());
+    }
 }

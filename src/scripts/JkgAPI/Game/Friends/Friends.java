@@ -8,7 +8,7 @@ import org.tribot.api2007.GameTab;
 import org.tribot.api2007.Interfaces;
 import org.tribot.api2007.types.RSInterfaceChild;
 import org.tribot.api2007.types.RSInterfaceComponent;
-import scripts.JkgAPI.Game.Condition;
+import scripts.JkgAPI.Core.JKGConditions;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,7 +32,7 @@ public class Friends {
         if (container != null) {
             if (container.getChildren() == null) { //Friends are not loaded yet
                 GameTab.open(GameTab.TABS.FRIENDS);
-                Timing.waitCondition(new Condition() {
+                Timing.waitCondition(new JKGConditions() {
                     @Override
                     public boolean active() {
                         General.sleep(50, 100);
@@ -108,7 +108,7 @@ public class Friends {
         if (Friends.getFriend(name) != null) return true;
         final RSInterfaceChild addButton = Interfaces.get(PARENT_WIDGET, ADD_FRIEND);
         final int count = getAmount();
-        return clickFriendButton(addButton, name) && Timing.waitCondition(new Condition() {
+        return clickFriendButton(addButton, name) && Timing.waitCondition(new JKGConditions() {
             @Override
             public boolean active() {
                 General.sleep(50, 100);
@@ -127,7 +127,7 @@ public class Friends {
         if (Friends.getFriend(name) == null) return true;
         final RSInterfaceChild deleteButton = Interfaces.get(PARENT_WIDGET, DELETE_FRIEND);
         final int count = getAmount();
-        return clickFriendButton(deleteButton, name) && Timing.waitCondition(new Condition() {
+        return clickFriendButton(deleteButton, name) && Timing.waitCondition(new JKGConditions() {
             @Override
             public boolean active() {
                 General.sleep(50, 100);

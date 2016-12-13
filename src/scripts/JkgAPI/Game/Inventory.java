@@ -69,4 +69,9 @@ public class Inventory extends org.tribot.api2007.Inventory {
 
         return result;
     }
+
+	public static boolean hasItem(String tiaraName) {
+		// TODO Auto-generated method stub
+		return false;
+	}
 }

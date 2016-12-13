@@ -1,9 +1,6 @@
 package scripts.JKGRunecrafter.Altars;
 
-import org.tribot.api.types.generic.Filter;
-import org.tribot.api2007.ext.Filters.Items;
 import org.tribot.api2007.types.RSArea;
-import org.tribot.api2007.types.RSItem;
 import org.tribot.api2007.types.RSTile;
 import scripts.JKGRunecrafter.Altars.AbstractAltar;
 
@@ -34,13 +31,13 @@ public class WaterAltar extends AbstractAltar {
 	}
 
 	@Override
-	public Filter<RSItem> getTiaraID() {
-		return Items.nameEquals("Water tiara");
+	public String getTiaraName() {
+		return "Water tiara";
 	}
 
 	@Override
-	public int getTalismanID() {
-		return 1444;
+	public String getTalismanName() {
+		return "Water talisman";
 	}
 
 	@Override
